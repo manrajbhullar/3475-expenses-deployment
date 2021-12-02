@@ -1,0 +1,11 @@
+#cloud-config
+write_files:
+  - path: /home/ec2-user/3475-expenses/db_config.py
+    owner: ec2-user:ec2-user
+    permissions: "0644"
+    content: |
+      HOST='mongodb://${mongodb_host}:27017/expenses'
+      USER='${mongodb_user}'
+      PASSWORD='${mongodb_password}'
+runcmd:
+  - [ systemctl, restart, --no-block, app.service ]

@@ -1,0 +1,17 @@
+[Unit]
+Description=Expenses App
+After=cloud-final.service
+
+[Service]
+WorkingDirectory=/home/ec2-user/3475-expenses
+ExecStart=/home/ec2-user/3475-expenses/venv/bin/python3 /home/ec2-user/3475-expenses/main.py
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandrdError=syslog
+SyslogIdentifier=expenses-app
+User=ec2-user
+
+[Install]
+WantedBy=multi-user.target
+WantedBy=cloud-init.target
